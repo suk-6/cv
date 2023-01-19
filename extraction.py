@@ -23,5 +23,4 @@ while (video.isOpened()):
         cv2.imwrite("./images/frame_%s.PNG" % count_str, image)
         count += 1
 
-print('Saved frame%d.jpg' % count)
 video.release()
