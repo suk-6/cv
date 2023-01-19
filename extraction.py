@@ -20,7 +20,7 @@ while (video.isOpened()):
     if (int(video.get(1)) % 10 == 0):
         print('Saved frame number : ' + str(int(video.get(1))))
         count_str = format(count, '06')
-        cv2.imwrite("./images2/frame_%s.PNG" % count_str, image)
+        cv2.imwrite("./images/frame_%s.PNG" % count_str, image)
         count += 1
 
 print('Saved frame%d.jpg' % count)
