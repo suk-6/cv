@@ -135,40 +135,53 @@ cus2new = {
 
 import os
 
-train_list = os.listdir("./labels/train")
-val_list = os.listdir("./labels/val")
-test_list = os.listdir("./labels/test")
+# train_list = os.listdir("./labels/train")
+# val_list = os.listdir("./labels/val")
+# test_list = os.listdir("./labels/test")
+
+lists = os.listdir("./labels")
 
 tmp = []
 
-for listname in train_list, val_list, test_list:
-    for filename in listname:
-        if listname == train_list:
-            target_class = "train"
-        if listname == val_list:
-            target_class = "val"
-        if listname == test_list:
-            target_class = "test"
+# for listname in train_list, val_list, test_list:
+#     for filename in listname:
+#         if listname == train_list:
+#             target_class = "train"
+#         if listname == val_list:
+#             target_class = "val"
+#         if listname == test_list:
+#             target_class = "test"
+for listname in lists:
+    labels = os.listdir("./labels/{l}".format(l=listname))
+    for filename in labels:
         new_lines = ""
-        path = "labels/{l}/{f}".format(l=target_class, f=filename)
-        new_path = "new/{l}/{f}".format(l=target_class, f=filename)
-        with open(path, "r", encoding="utf-8") as f:
-            lines = f.readlines()
-            for line in lines:
-                new_line = ""
-                idx = line.split()[0]
-                idx = cus2new[int(idx)]
-                new_line += str(idx)
-                new_line += " "
-                new_line += line.split()[1]
-                new_line += " "
-                new_line += line.split()[2]
-                new_line += " "
-                new_line += line.split()[3]
-                new_line += " "
-                new_line += line.split()[4]
-                new_line += "\n"
-                new_lines += new_line
-            # print(new_lines)
-        with open(new_path, "w") as f:
-            f.write(new_lines)
+        path = "./labels/{l}/{f}".format(l=listname, f=filename)
+        new_path = "./new/{l}/{l}_{f}".format(l=listname, f=filename)
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                lines = f.readlines()
+                for line in lines:
+                    new_line = ""
+                    idx = line.split()[0]
+                    idx = cus2new[int(idx)]
+                    new_line += str(idx)
+                    new_line += " "
+                    new_line += line.split()[1]
+                    new_line += " "
+                    new_line += line.split()[2]
+                    new_line += " "
+                    new_line += line.split()[3]
+                    new_line += " "
+                    new_line += line.split()[4]
+                    new_line += "\n"
+                    new_lines += new_line
+                # print(new_lines)
+        except:
+            continue
+        try:
+            with open(new_path, "w") as f:
+                f.write(new_lines)
+        except:
+            os.mkdir("./new/{l}".format(l=listname))
+            with open(new_path, "w") as f:
+                f.write(new_lines)

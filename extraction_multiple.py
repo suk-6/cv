@@ -1,7 +1,9 @@
 import cv2
 import os
 
-videos_dir = "/Volumes/SSD1/MP4"
+root_dir = "/Volumes/Make"
+
+videos_dir = root_dir + "/MP4"
 
 video_list = os.listdir(videos_dir)
 
@@ -11,7 +13,7 @@ print(video_name)
 
 for name in video_name:
 
-    video = cv2.VideoCapture("/Volumes/SSD1/MP4/" + name + ".mp4")
+    video = cv2.VideoCapture(root_dir + "/MP4/" + name + ".mp4")
 
     length = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
     width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -27,20 +29,21 @@ for name in video_name:
     count = 0
 
     while video.isOpened():
-        if count >= length:
+        if count >= int((length - (length % 10)) / 10):
             video.release()
             print("break")
             break
 
         ret, image = video.read()
 
-        print("Saved frame number : " + str(int(video.get(1))))
-        count_str = format(count, "06")
-        cv2.imwrite(
-            "/Volumes/SSD1/images/{video_name}_{frame_num}.png".format(
-                video_name=name, frame_num=count_str
-            ),
-            image,
-        )
+        if int(video.get(1)) % 10 == 0:
+            print("Saved frame number : " + str(int(video.get(1))))
+            count_str = format(count, "06")
+            cv2.imwrite(
+                "{root}/images/{video_name}_frame_{frame_num}.png".format(
+                    root=root_dir, video_name=name[4:], frame_num=count_str
+                ),
+                image,
+            )
 
-        count += 1
+            count += 1
