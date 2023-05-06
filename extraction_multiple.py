@@ -1,11 +1,11 @@
 import cv2
 import os
 
-root_dir = "/Volumes/Make"
+rootDir = "/Volumes/Make"
 
-videos_dir = root_dir + "/videos"
+videosDir = rootDir + "/videos"
 
-videoFile_list = os.listdir(videos_dir)
+videoFile_list = os.listdir(videosDir)
 
 videoName_list = [name.split(".")[0] for name in videoFile_list]
 
@@ -13,7 +13,7 @@ print(videoName_list)
 
 for name in videoName_list:
 
-    video = cv2.VideoCapture(f"{videos_dir}/" + name + ".mp4")
+    video = cv2.VideoCapture(f"{videosDir}/" + name + ".mp4")
 
     length = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
     width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
@@ -39,9 +39,9 @@ for name in videoName_list:
         if int(video.get(1)) % 10 == 0:
             print("Saved frame number : " + str(int(video.get(1))))
             count_str = format(count, "06")
-            # cv2.imwrite(f"{root_dir}/images/{name[4:]}_frame_{count_str}.png", image)
+            # cv2.imwrite(f"{rootDir}/images/{name[4:]}_frame_{count_str}.png", image)
             cv2.imwrite(
-                f"{root_dir}/images/{name[4:]}_frame_{count_str}.jpg",
+                f"{rootDir}/images/{name[4:]}_frame_{count_str}.jpg",
                 image,
                 [cv2.IMWRITE_JPEG_QUALITY, 60],
             )
