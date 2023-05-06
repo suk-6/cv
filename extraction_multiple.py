@@ -13,7 +13,7 @@ print(videoName_list)
 
 for name in videoName_list:
 
-    video = cv2.VideoCapture(videos_dir + name + ".mp4")
+    video = cv2.VideoCapture(f"{videos_dir}/" + name + ".mp4")
 
     length = int(video.get(cv2.CAP_PROP_FRAME_COUNT))
     width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
