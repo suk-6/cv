@@ -5,9 +5,7 @@ rootDir = "/Volumes/Make"
 
 videosDir = rootDir + "/videos"
 
-videoFile_list = os.listdir(videosDir)
-
-videoName_list = [name.split(".")[0] for name in videoFile_list]
+videoName_list = [name.split(".")[0] for name in os.listdir(videosDir)]
 
 print(videoName_list)
 
@@ -39,9 +37,12 @@ for name in videoName_list:
         if int(video.get(1)) % 10 == 0:
             print("Saved frame number : " + str(int(video.get(1))))
             count_str = format(count, "06")
+            outputDir = f"{rootDir}/images/{name[4:]}"
+            if not os.path.exists(outputDir):
+                os.makedirs(outputDir)
             # cv2.imwrite(f"{rootDir}/images/{name[4:]}_frame_{count_str}.png", image)
             cv2.imwrite(
-                f"{rootDir}/images/{name[4:]}_frame_{count_str}.jpg",
+                f"{outputDir}/frame_{count_str}.jpg",
                 image,
                 [cv2.IMWRITE_JPEG_QUALITY, 60],
             )
