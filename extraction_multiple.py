@@ -17,6 +17,7 @@ for name in videoName_list:
     width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = video.get(cv2.CAP_PROP_FPS)
+    frame = 30 #프레임 단위
 
     print("video: ", name)
     print("length: ", length)
@@ -27,17 +28,17 @@ for name in videoName_list:
     count = 0
 
     while video.isOpened():
-        if count >= int((length - (length % 10)) / 10):
+        if count >= int((length - (length % frame)) / frame):
             video.release()
             print("break")
             break
 
         ret, image = video.read()
 
-        if int(video.get(1)) % 10 == 0:
+        if int(video.get(1)) % frame == 0:
             print("Saved frame number : " + str(int(video.get(1))))
             count_str = format(count, "06")
-            outputDir = f"{rootDir}/images/{name[4:]}"
+            outputDir = f"{rootDir}/images/{name}"
             if not os.path.exists(outputDir):
                 os.makedirs(outputDir)
             # cv2.imwrite(f"{rootDir}/images/{name[4:]}_frame_{count_str}.png", image)
