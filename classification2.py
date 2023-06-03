@@ -3,66 +3,75 @@ import shutil
 import math
 import random
 
-root_dir = "/home/woosuk/230222-train/data"
+rootDir = "/home/woosuk/230506-files"
 
-images_dir = "{root_dir}/images".format(root_dir=root_dir)
+imageDir = f"{rootDir}/images"
 
-image_list = os.listdir(images_dir)
+imageList = os.listdir(imageDir)
 
-image_list_1 = [file for file in image_list if file.endswith(".png")]
+targetList = [file[:-4] for file in imageList if file.endswith(".jpg")]
 
-target_list = []
+imageCount = len(targetList)
 
-for s in image_list_1:
-    target_list.append(s[:-4])
+num = random.sample(range(imageCount), imageCount)
 
-image_count = len(target_list)
-
-num = random.sample(range(image_count), image_count)
-
-train_count = math.floor(image_count * 0.7)
-val_count = math.floor(image_count * 0.2)
-test_count = math.floor(image_count * 0.1)
+trainCount = math.floor(imageCount * 0.7)
+valCount = math.floor(imageCount * 0.2)
+testCount = math.floor(imageCount * 0.1)
 
 train = []
 val = []
 test = []
 
-for i in range(train_count):
-    FileName = target_list[num[i]]
+if not os.path.exists(f"{rootDir}/images/train"):
+    os.mkdir(f"{rootDir}/images/train")
+if not os.path.exists(f"{rootDir}/images/val"):
+    os.mkdir(f"{rootDir}/images/val")
+if not os.path.exists(f"{rootDir}/images/test"):
+    os.mkdir(f"{rootDir}/images/test")
+
+if not os.path.exists(f"{rootDir}/labels/train"):
+    os.mkdir(f"{rootDir}/labels/train")
+if not os.path.exists(f"{rootDir}/labels/val"):
+    os.mkdir(f"{rootDir}/labels/val")
+if not os.path.exists(f"{rootDir}/labels/test"):
+    os.mkdir(f"{rootDir}/labels/test")
+
+for i in range(trainCount):
+    FileName = targetList[num[i]]
     shutil.move(
-        "{root_dir}/images/{FileName}.png".format(root_dir=root_dir, FileName=FileName),
-        "{root_dir}/images/train".format(root_dir=root_dir),
+        f"{rootDir}/images/{FileName}.jpg",
+        f"{rootDir}/images/train",
     )
     shutil.move(
-        "{root_dir}/labels/{FileName}.txt".format(root_dir=root_dir, FileName=FileName),
-        "{root_dir}/labels/train".format(root_dir=root_dir),
+        f"{rootDir}/labels/{FileName}.txt",
+        f"{rootDir}/labels/train",
     )
     train.append(FileName)
 
-for i in range(val_count):
-    i += train_count
-    FileName = target_list[num[i]]
+for i in range(valCount):
+    i += trainCount
+    FileName = targetList[num[i]]
     shutil.move(
-        "{root_dir}/images/{FileName}.png".format(root_dir=root_dir, FileName=FileName),
-        "{root_dir}/images/val".format(root_dir=root_dir),
+        f"{rootDir}/images/{FileName}.jpg",
+        f"{rootDir}/images/val",
     )
     shutil.move(
-        "{root_dir}/labels/{FileName}.txt".format(root_dir=root_dir, FileName=FileName),
-        "{root_dir}/labels/val".format(root_dir=root_dir),
+        f"{rootDir}/labels/{FileName}.txt",
+        f"{rootDir}/labels/val",
     )
     val.append(FileName)
 
-for i in range(test_count):
-    i += train_count + val_count
-    FileName = target_list[num[i]]
+for i in range(testCount):
+    i += trainCount + valCount
+    FileName = targetList[num[i]]
     shutil.move(
-        "{root_dir}/images/{FileName}.png".format(root_dir=root_dir, FileName=FileName),
-        "{root_dir}/images/test".format(root_dir=root_dir),
+        f"{rootDir}/images/{FileName}.jpg",
+        f"{rootDir}/images/test",
     )
     shutil.move(
-        "{root_dir}/labels/{FileName}.txt".format(root_dir=root_dir, FileName=FileName),
-        "{root_dir}/labels/test".format(root_dir=root_dir),
+        f"{rootDir}/labels/{FileName}.txt",
+        f"{rootDir}/labels/test",
     )
     test.append(FileName)
 
