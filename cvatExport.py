@@ -1,3 +1,5 @@
+# CVAT에서 추출한 라벨링 파일을 정리하는 코드
+
 import os
 import shutil
 

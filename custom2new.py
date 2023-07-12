@@ -1,3 +1,5 @@
+# COCO 라벨과 Custom 라벨을 매칭시켜주는 코드
+
 new_labels = {
 0: "person",
 1: "bicycle",

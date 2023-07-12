@@ -1,3 +1,5 @@
+# 이미지와 라벨링 파일 개수 확인
+
 import os
 
 rootDir = "/Volumes/Make/230506-files"

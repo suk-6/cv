@@ -1,3 +1,5 @@
+# 이미지와 라벨링 파일을 비율에 맞게 분류 (개선버전)
+
 import os
 import shutil
 import math

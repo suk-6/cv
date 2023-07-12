@@ -1,3 +1,5 @@
+# 영상을 지정된 프레임 단위로 추출하는 코드
+
 import cv2
 
 video = cv2.VideoCapture('./video.mp4')
