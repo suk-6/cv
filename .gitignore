@@ -1,5 +1,6 @@
-video.mp4
+*.mp4
 images/
 .DS_store
 labels/
 new/
+.ipynb_checkpoints/
