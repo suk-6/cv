@@ -4,3 +4,4 @@ images/
 labels/
 new/
 .ipynb_checkpoints/
+*.png
