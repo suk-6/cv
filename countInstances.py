@@ -13,6 +13,7 @@ readLabels = []
 def saveCSV(countLabels):
     with open("label_counts.csv", "w") as f:
         writer = csv.writer(f)
+        writer.writerow(["Total Images", len(labelFiles)])
         writer.writerow(["Total Instances", len(readLabels)])
         for label, count in countLabels.items():
             writer.writerow([label, count])
