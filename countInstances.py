@@ -5,7 +5,37 @@ import matplotlib.pyplot as plt
 path = "/Volumes/T7/230728/labels"
 
 labelFiles = glob.glob(path + '/*')
-labels = ["tree", "car", "person", "pole", "fence", "utility_pole", "bollard", "bicycle", "motorcycle", "flower_bed", "dog", "bus_stop", "traffic_cone", "truck", "bench", "bus", "kickboard", "streetlamp", "telephone_booth", "trash", "fire_plug", "plant", "sign_board", "fire_hydrant", "corner", "opened_door", "mailbox", "unknown", "banner"]
+labels = [
+    "tree",
+    "car",
+    "person",
+    "pole",
+    "fence",
+    "utility_pole",
+    "bollard",
+    "bicycle",
+    "motorcycle",
+    "flower_bed",
+    "dog",
+    "bus_stop",
+    "traffic_cone",
+    "truck",
+    "bench",
+    "bus",
+    "kickboard",
+    "streetlamp",
+    "telephone_booth",
+    "trash",
+    "fire_plug",
+    "plant",
+    "sign_board",
+    "fire_hydrant",
+    "corner",
+    "opened_door",
+    "mailbox",
+    "unknown",
+    "banner"
+]
 
 def saveCSV(countLabels, instanceCount):
     with open("label_counts.csv", "w") as f:
