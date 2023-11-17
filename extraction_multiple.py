@@ -3,7 +3,7 @@
 import cv2
 import os
 
-rootDir = "/Volumes/Make"
+rootDir = "/Volumes/T7/Original-videos/wangsimni2"
 
 videosDir = rootDir + "/videos"
 
@@ -19,7 +19,7 @@ for name in videoName_list:
     width = int(video.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(video.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = video.get(cv2.CAP_PROP_FPS)
-    frame = 30 #프레임 단위
+    frame = 240 #프레임 단위
 
     print("video: ", name)
     print("length: ", length)
