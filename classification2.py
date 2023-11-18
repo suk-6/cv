@@ -63,13 +63,13 @@ for i in range(trainCount):
 for i in range(valCount):
     i += trainCount
     FileName = imageList[num[i]]
-    move(imageList[num[i]], "train")
+    move(imageList[num[i]], "val")
     val.append(FileName)
 
 for i in range(testCount):
     i += trainCount + valCount
     FileName = imageList[num[i]]
-    move(imageList[num[i]], "train")
+    move(imageList[num[i]], "test")
     test.append(FileName)
 
 
