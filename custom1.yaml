@@ -1,0 +1,37 @@
+path: /home/woosuk
+
+train:
+    - ./231118-files/images/train
+val:
+    - ./231118-files/images/val
+
+names:
+    0: tree
+    1: car
+    2: person
+    3: pole
+    4: fence
+    5: utility_pole
+    6: bollard
+    7: bicycle
+    8: motorcycle
+    9: flower_bed
+    10: dog
+    11: bus_stop
+    12: traffic_cone
+    13: truck
+    14: bench
+    15: bus
+    16: kickboard
+    17: streetlamp
+    18: telephone_booth
+    19: trash
+    20: fire_plug
+    21: plant
+    22: sign_board
+    23: fire_hydrant
+    24: corner
+    25: opened_door
+    26: mailbox
+    27: unknown
+    28: banner
