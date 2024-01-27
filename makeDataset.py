@@ -30,14 +30,14 @@ class app:
                     osp.join(self.root, "exports", str(i), image),
                 )
                 shutil.copy(
-                    osp.join(self.root, "labels", label),
+                    osp.join(self.root, "new", label),
                     osp.join(self.root, "exports", str(i), label),
                 )
 
 
 if __name__ == "__main__":
-    root = "/Users/woosuk/data/4000/dataset"
-    length = 1000
-    count = 3
+    root = "/Users/woosuk/data/5000/dataset"
+    length = 5000
+    count = 1
 
     app(root, length, count)

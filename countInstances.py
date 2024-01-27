@@ -2,9 +2,9 @@ import glob
 import csv
 import matplotlib.pyplot as plt
 
-path = "/Volumes/T7/230728/labels"
+path = "/Users/woosuk/data/all/labels"
 
-labelFiles = glob.glob(path + '/*')
+labelFiles = glob.glob(path + "/*")
 labels = [
     "tree",
     "car",
@@ -34,8 +34,9 @@ labels = [
     "opened_door",
     "mailbox",
     "unknown",
-    "banner"
+    "banner",
 ]
+
 
 def saveCSV(countLabels, instanceCount):
     with open("label_counts.csv", "w") as f:
@@ -45,6 +46,7 @@ def saveCSV(countLabels, instanceCount):
         for label, count in countLabels.items():
             writer.writerow([label, count])
             print(f"{label}: {count}")
+
 
 def readLabelFiles():
     readLabels = []
@@ -56,7 +58,7 @@ def readLabelFiles():
                 label = labels[int(line.split()[0])]
                 readLabels.append(label)
                 print(label)
-                
+
     countLabels = {label: readLabels.count(label) for label in labels}
     instanceCount = len(readLabels)
 
@@ -64,22 +66,25 @@ def readLabelFiles():
     saveCSV(countLabels, instanceCount)
     saveGraph(countLabels)
 
+
 def printLabelCounts(countLabels, instanceCount):
     for label, count in countLabels.items():
         print(f"{label}: {count}")
 
     print(f"총 인스턴스 개수: {instanceCount}")
 
+
 def saveGraph(countLabels):
     plt.bar(countLabels.keys(), countLabels.values())
-    plt.xlabel('Label')
-    plt.ylabel('Instance Count')
-    plt.title('Label Distribution')
+    plt.xlabel("Label")
+    plt.ylabel("Instance Count")
+    plt.title("Label Distribution")
     plt.xticks(rotation=90)
     plt.tight_layout()
 
     # plt.ylim(0, 1000)
 
     plt.savefig("label_distribution.png")
+
 
 readLabelFiles()

@@ -138,7 +138,7 @@ import os
 # train_list = os.listdir("./labels/train")
 # val_list = os.listdir("./labels/val")
 # test_list = os.listdir("./labels/test")
-root = "/Users/woosuk/data/4000/dataset"
+root = "/Users/woosuk/data/5000/dataset"
 labelPath = os.path.join(root, "labels")
 newPath = os.path.join(root, "new")
 
