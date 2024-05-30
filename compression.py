@@ -14,7 +14,7 @@ def compressImages(inputFolder, outputFolder, quality=60, resolution=None):
             img = img.convert("RGB")
 
             if resolution is not None:
-                img = img.resize(resolution, Image.ANTIALIAS)
+                img = img.resize(resolution, Image.LANCZOS)
 
             output_path = os.path.join(outputFolder, filename)
             img.save(output_path, quality=quality, optimize=True)
