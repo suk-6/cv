@@ -2,7 +2,7 @@ from PIL import Image
 import os
 
 
-def compressImages(inputFolder, outputFolder, quality=60):
+def compressImages(inputFolder, outputFolder, quality=60, resolution=None):
     if not os.path.exists(outputFolder):
         os.makedirs(outputFolder)
 
@@ -13,6 +13,9 @@ def compressImages(inputFolder, outputFolder, quality=60):
 
             img = img.convert("RGB")
 
+            if resolution is not None:
+                img = img.resize(resolution, Image.ANTIALIAS)
+
             output_path = os.path.join(outputFolder, filename)
             img.save(output_path, quality=quality, optimize=True)
 
@@ -22,4 +25,6 @@ def compressImages(inputFolder, outputFolder, quality=60):
 inputFolder = "images"
 outputFolder = "compressed_images"
 
-compressImages(inputFolder, outputFolder)
+resolution = (1280, 720)
+
+compressImages(inputFolder, outputFolder, resolution=resolution)
